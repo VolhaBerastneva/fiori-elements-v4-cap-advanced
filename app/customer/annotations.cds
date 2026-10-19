@@ -5,7 +5,11 @@ annotate service.Passenger with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : createdAt,
+                Value : CustomerID,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PostalCode,
             },
             {
                 $Type : 'UI.DataField',
@@ -18,10 +22,6 @@ annotate service.Passenger with @(
             {
                 $Type : 'UI.DataField',
                 Value : LastChangedBy,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CustomerID,
             },
             {
                 $Type : 'UI.DataField',
@@ -41,16 +41,7 @@ annotate service.Passenger with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : PostalCode,
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : City,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'CountryCode_code',
-                Value : CountryCode_code,
             },
             {
                 $Type : 'UI.DataField',
@@ -105,5 +96,38 @@ annotate service.Passenger with @(
         City,
         PostalCode,
     ],
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Contact details',
+            ID : 'Contactdetails',
+            Target : '@UI.FieldGroup#Contactdetails',
+        },
+    ],
+    UI.FieldGroup #Contactdetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : EMailAddress,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : FullName,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PhoneNumber,
+            },
+        ],
+    },
+    UI.HeaderInfo : {
+        TypeName : '{i18n>CustomerID}',
+        TypeNamePlural : '{i18n>Customers}',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : FirstName,
+        },
+    },
 );
 
