@@ -97,3 +97,5 @@ annotate schema.Supplement with @title: '{i18n>Supplement}' {
   CurrencyCode @title: '{i18n>CurrencyCode}';
   Description  @title: '{i18n>Description}';
 }
+
+
