@@ -4,118 +4,130 @@ using TravelService from '../../srv/travel-service';
 // annotatios that control the fiori layout
 //
 
-annotate TravelService.Travel with @UI: {
-
-    Identification        : [
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action: 'TravelService.acceptTravel',
-            Label : '{i18n>AcceptTravel}'
+annotate TravelService.Travel with @(
+    UI: {
+    
+        Identification        : [
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action: 'TravelService.acceptTravel',
+                Label : '{i18n>AcceptTravel}'
+            },
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action: 'TravelService.rejectTravel',
+                Label : '{i18n>RejectTravel}'
+            }
+        ],
+        HeaderInfo            : {
+            TypeName      : '{i18n>Travel}',
+            TypeNamePlural: '{i18n>Travels}',
+            Title         : {
+                $Type: 'UI.DataField',
+                Value: Description
+            },
+            Description   : {
+                $Type: 'UI.DataField',
+                Value: TravelID
+            }
         },
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action: 'TravelService.rejectTravel',
-            Label : '{i18n>RejectTravel}'
-        }
-    ],
-    HeaderInfo            : {
-        TypeName      : '{i18n>Travel}',
-        TypeNamePlural: '{i18n>Travels}',
-        Title         : {
-            $Type: 'UI.DataField',
-            Value: Description
-        },
-        Description   : {
-            $Type: 'UI.DataField',
-            Value: TravelID
-        }
-    },
-    PresentationVariant   : {
-        Text          : 'Default',
-        Visualizations: ['@UI.LineItem'],
-        SortOrder     : [{
-            $Type     : 'Common.SortOrderType',
-            Property  : TravelID,
-            Descending: true
-        }]
-    },
-    SelectionFields       : [
-        to_Agency_AgencyID,
-        to_Customer_CustomerID,
-        TravelStatus_code,
-        BeginDate,
-        EndDate,
-    ],
-    LineItem              : [
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action: 'TravelService.acceptTravel',
-            Label : '{i18n>AcceptTravel}'
-        },
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action: 'TravelService.rejectTravel',
-            Label : '{i18n>RejectTravel}'
-        },
-        {
-            Value            : TravelID,
-            ![@UI.Importance]: #High
-        },
-        {
-            Value            : to_Customer_CustomerID,
-            ![@UI.Importance]: #High
-        },
-        {Value: BeginDate},
-        {Value: EndDate},
-        {Value: BookingFee},
-        {Value: TotalPrice},
-        {
-            $Type            : 'UI.DataField',
-            Value            : TravelStatus_code,
-            Criticality      : TravelStatus.criticality,
-            ![@UI.Importance]: #High
-        },
-        {
-            $Type : 'UI.DataFieldForAction',
-            Action : 'TravelService.deductDiscount',
-            Label : 'Deduct Discount',
-        },
-    ],
-    Facets                : [
-        {
-            $Type : 'UI.CollectionFacet',
-            Label : '{i18n>GeneralInformation}',
-            ID    : 'Travel',
-            Facets: [{ // travel details
-                $Type : 'UI.ReferenceFacet',
-                ID    : 'TravelData',
-                Target: '@UI.FieldGroup#TravelData',
-                Label : '{i18n>GeneralInformation}'
+        PresentationVariant   : {
+            Text          : 'Default',
+            Visualizations: ['@UI.LineItem'],
+            SortOrder     : [{
+                $Type     : 'Common.SortOrderType',
+                Property  : TravelID,
+                Descending: true
             }]
         },
-        { // booking list
-            $Type : 'UI.ReferenceFacet',
-            Target: 'to_Booking/@UI.PresentationVariant',
-            Label : '{i18n>Bookings}'
-        }
-    ],
-    FieldGroup #TravelData: {Data: [
-        {Value: TravelID},
-        {Value: to_Agency_AgencyID},
-        {Value: to_Customer_CustomerID},
-        {Value: Description}
-    ]},
-    FieldGroup #DateData  : {Data: [
+        SelectionFields       : [
+            to_Agency_AgencyID,
+            to_Customer_CustomerID,
+            TravelStatus_code,
+            BeginDate,
+            EndDate,
+        ],
+        LineItem              : [
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action: 'TravelService.acceptTravel',
+                Label : '{i18n>AcceptTravel}'
+            },
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action: 'TravelService.rejectTravel',
+                Label : '{i18n>RejectTravel}'
+            },
+            {
+                Value            : TravelID,
+                ![@UI.Importance]: #High
+            },
+            {
+                Value            : to_Customer_CustomerID,
+                ![@UI.Importance]: #High
+            },
+            {Value: BeginDate},
+            {Value: EndDate},
+            {Value: BookingFee},
+            {Value: TotalPrice},
+            {
+                $Type            : 'UI.DataField',
+                Value            : TravelStatus_code,
+                Criticality      : TravelStatus.criticality,
+                ![@UI.Importance]: #High
+            },
+            {
+                $Type : 'UI.DataFieldForAction',
+                Action : 'TravelService.deductDiscount',
+                Label : 'Deduct Discount',
+            },
         {
-            $Type: 'UI.DataField',
-            Value: BeginDate
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.DataPoint#Progress',
+            Label : '{i18n>ProgressOfTravel}',
         },
-        {
-            $Type: 'UI.DataField',
-            Value: EndDate
-        }
-    ]}
-};
+        ],
+        Facets                : [
+            {
+                $Type : 'UI.CollectionFacet',
+                Label : '{i18n>GeneralInformation}',
+                ID    : 'Travel',
+                Facets: [{ // travel details
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'TravelData',
+                    Target: '@UI.FieldGroup#TravelData',
+                    Label : '{i18n>GeneralInformation}'
+                }]
+            },
+            { // booking list
+                $Type : 'UI.ReferenceFacet',
+                Target: 'to_Booking/@UI.PresentationVariant',
+                Label : '{i18n>Bookings}'
+            }
+        ],
+        FieldGroup #TravelData: {Data: [
+            {Value: TravelID},
+            {Value: to_Agency_AgencyID},
+            {Value: to_Customer_CustomerID},
+            {Value: Description}
+        ]},
+        FieldGroup #DateData  : {Data: [
+            {
+                $Type: 'UI.DataField',
+                Value: BeginDate
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: EndDate
+            }
+        ]}
+    },
+    UI.DataPoint #Progress : {
+        Value : Progress,
+        Visualization : #Progress,
+        TargetValue : 100,
+    },
+);
 
 annotate TravelService.Booking with @UI: {
     Identification                : [{Value: BookingID}, ],
