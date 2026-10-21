@@ -133,10 +133,12 @@ annotate TravelService.Travel with @UI: {
         {
             $Type: 'UI.DataField',
             Value: BeginDate,
+            ![@UI.Hidden]: TravelStatus.cancelRestrictions
         },
         {
             $Type: 'UI.DataField',
             Value: EndDate,
+            ![@UI.Hidden]: TravelStatus.cancelRestrictions
         }
     ]},
     FieldGroup #DateData  : {Data: [
