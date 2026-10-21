@@ -143,16 +143,47 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
                                     "useSemanticDateRange": true
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView1": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView2": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
                                 }
                             },
                             "variantManagement": "Page",
-                            "initialLoad": "Enabled",
                             "navigation": {
                                 "Travel": {
                                     "detail": {
                                         "route": "TravelObjectPage"
                                     }
                                 }
+                            },
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1",
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1"
+                                    },
+                                    {
+                                        "key": "tableView1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                                    },
+                                    {
+                                        "key": "tableView2",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView3"
+                                    }
+                                ]
                             }
                         }
                     },

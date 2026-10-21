@@ -138,6 +138,105 @@ annotate TravelService.Travel with @(
         Visualization : #Progress,
         TargetValue : 100,
     },
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : ![@UI.PresentationVariant],
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : '{i18n>Accepted}',
+    },
+    UI.LineItem #tableView : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'TravelService.rejectTravel',
+            Label : 'rejectTravel',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Description,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : to_Customer_CustomerID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : TravelID,
+            Label : 'TravelID',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : LastChangedAt,
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView1 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : '{i18n>Accepted}',
+    },
+    UI.LineItem #tableView1 : [
+    ],
+    UI.SelectionPresentationVariant #tableView2 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView1',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : '{i18n>Open}',
+    },
+    UI.LineItem #tableView2 : [
+        {
+            $Type : 'UI.DataField',
+            Value : Description,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : LastChangedAt,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : to_Customer_CustomerID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : to_Agency_AgencyID,
+        },
+    ],
+    UI.SelectionPresentationVariant #tableView3 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView2',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : '{i18n>Chanceled}',
+    },
 );
 
 annotate TravelService.Booking with @(
