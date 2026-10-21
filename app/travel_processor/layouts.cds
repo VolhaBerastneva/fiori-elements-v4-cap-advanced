@@ -74,7 +74,12 @@ annotate TravelService.Travel with @UI: {
             Value            : TravelStatus_code,
             Criticality      : TravelStatus.criticality,
             ![@UI.Importance]: #High
-        }
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'TravelService.deductDiscount',
+            Label : 'Deduct Discount',
+        },
     ],
     Facets                : [
         {
