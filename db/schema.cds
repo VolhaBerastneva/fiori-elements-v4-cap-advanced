@@ -79,6 +79,16 @@ entity TravelStatus : CodeList {
   insertDeleteRestriction: Boolean; // = NOT createDeleteHidden
 }
 
+@odata.singleton
+entity SupplementScope {
+  MinimumValue : Integer @Common.Label: 'Minimum Value';
+  MaximumValue : Integer @Common.Label: 'Maximum Value';
+  TargetValue : Integer @Common.Label: 'Target Value';
+  DeviationRangeLowValue : Integer @Common.Label: 'Deviation Range Threshold';
+  ToleranceRangeLowValue : Integer @Common.Label: 'Tolerance Range Threshold'; 
+}
+
+
 annotate Travel with @(
 Capabilities: {
 	FilterRestrictions : {FilterExpressionRestrictions : [{
@@ -97,3 +107,5 @@ annotate Travel with @(
       Deletable: TravelStatus.insertDeleteRestriction
    }   
 );
+
+
