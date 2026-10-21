@@ -151,6 +151,15 @@ init() {
     }` })
   }
 
+    /**
+     * Update the Booking's TotalSupplPrice
+     */
+    this._update_totals_supplement = async function (booking) {
+      const { totals } = await SELECT.one `coalesce (sum (Price),0) as totals` .from (BookingSupplement.drafts) .where
+      `to_Booking_BookingUUID = ${booking}`
+      return  UPDATE (Booking.drafts, booking) .with({TotalSupplPrice: totals})
+    }
+
 
   /**
    * Validate a Travel's edited data before save.
