@@ -90,10 +90,7 @@ entity TravelStatus : CodeList {
 
 annotate Travel with @(
 Capabilities: {
-	FilterRestrictions : {FilterExpressionRestrictions : [{
-		Property	: 'BeginDate',
-		AllowedExpressions: 'SingleRange'
-	},
+	FilterRestrictions : {FilterExpressionRestrictions : [
 	{
 		Property	: 'EndDate',
 		AllowedExpressions: 'SingleRange'
